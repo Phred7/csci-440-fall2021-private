@@ -35,3 +35,24 @@ WHERE albums.AlbumId IN
       (SELECT AlbumId FROM tracks
        GROUP BY AlbumId
     HAVING  10000000 > SUM(tracks.Bytes)));
+
+
+-- Gets all first album where artist has more than one album
+SELECT *
+FROM albums
+GROUP BY ArtistId
+HAVING COUNT(*) > 1;
+
+-- returns all artists that have more than one album
+SELECT Name
+FROM albums
+JOIN artists on artists.ArtistId = albums.ArtistId
+GROUP BY albums.ArtistId
+HAVING COUNT(*) > 1;
+
+-- returns all tracks longer than six minutes along with the album and artist name
+SELECT tracks.Name as TrackName, albums.Title as AlbumTitle, artists.Name as ArtistsName
+FROM tracks
+JOIN albums ON tracks.AlbumId = albums.AlbumId
+JOIN artists ON albums.ArtistId = artists.ArtistId
+WHERE tracks.Milliseconds > 6 * 60 * 1000;
