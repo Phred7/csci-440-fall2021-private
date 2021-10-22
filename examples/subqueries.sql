@@ -56,3 +56,54 @@ FROM tracks
 JOIN albums ON tracks.AlbumId = albums.AlbumId
 JOIN artists ON albums.ArtistId = artists.ArtistId
 WHERE tracks.Milliseconds > 6 * 60 * 1000;
+
+-- Inserts these new artists into the artists table with Name
+INSERT INTO artists (Name)
+VALUES
+("Ricky Skagg's"),
+("-Steve''n''Seagulls"),
+("Earl Skruggs");
+
+-- Deletes all rows from artists
+DELETE FROM artists
+WHERE 1=1;
+
+
+-- returns all artists that have more than 2 albums
+SELECT artists.Name, COUNT(DISTINCT tracks.TrackID) as tracks
+FROM albums
+JOIN artists on artists.ArtistId = albums.ArtistId
+JOIN tracks on tracks.AlbumId = albums.AlbumId
+GROUP BY albums.ArtistId
+HAVING COUNT(*) > 2;
+
+-- Return second page of 10 results form the tracks table, in descending order by price then ascending by track name
+SELECT *
+FROM tracks
+ORDER BY tracks.UnitPrice DESC,
+         tracks.Name ASC
+LIMIT 10
+OFFSET 10;
+
+--
+SELECT employees.FirstName, employees.LastName, employees.Title, bosses.FirstName
+FROM employees
+JOIN employees AS bosses ON employees.ReportsTo = bosses.EmployeeId
+WHERE bosses.FirstName = "Andrew" and bosses.LastName = "Adams";
+
+SELECT e.FirstName, e.LastName, e.Title, e.ReportsTo, COUNT(CustomerId) as number_of_customers
+FROM customers
+JOIN employees e on e.EmployeeId = customers.SupportRepId
+GROUP BY e.EmployeeId
+HAVING ;
+
+SELECT e.FirstName, e.LastName, e.Title, COUNT(distinct CustomerId) AS NumberOfCustomers
+FROM (customers
+         INNER JOIN Employees as e ON customers.SupportRepId = e.EmployeeID)
+GROUP BY e.ReportsTo;
+
+SELECT tracks.Name, g.Name
+FROM tracks
+JOIN genres g on g.GenreId = tracks.GenreId
+WHERE g.Name LIKE "Ro%";
+
