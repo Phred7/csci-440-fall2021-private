@@ -51,9 +51,10 @@ public class Artist extends Model {
     public static List<Artist> all(int page, int count) {
         try (Connection conn = DB.connect();
              PreparedStatement stmt = conn.prepareStatement(
-                     "SELECT * FROM artists LIMIT ?"
+                     "SELECT * FROM artists LIMIT ? OFFSET ?"
              )) {
             stmt.setInt(1, count);
+            stmt.setInt(2, (page - 1) * count);
             ResultSet results = stmt.executeQuery();
             List<Artist> resultList = new LinkedList<>();
             while (results.next()) {
@@ -80,4 +81,22 @@ public class Artist extends Model {
         }
     }
 
+    @Override
+    public boolean create() {
+        // if (verify()) {
+        if (true) {
+            try (Connection conn = DB.connect();
+                 PreparedStatement stmt = conn.prepareStatement(
+                         "INSERT INTO artists (Name) VALUES (?)")) {
+                stmt.setString(1, this.getName());
+                stmt.executeUpdate();
+                artistId = DB.getLastID(conn);
+                return true;
+            } catch (SQLException sqlException) {
+                throw new RuntimeException(sqlException);
+            }
+        } else {
+            return false;
+        }
+    }
 }
