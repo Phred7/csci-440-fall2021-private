@@ -83,8 +83,7 @@ public class Artist extends Model {
 
     @Override
     public boolean create() {
-        // if (verify()) {
-        if (true) {
+        if (verify()) {
             try (Connection conn = DB.connect();
                  PreparedStatement stmt = conn.prepareStatement(
                          "INSERT INTO artists (Name) VALUES (?)")) {
@@ -98,5 +97,20 @@ public class Artist extends Model {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean verify() {
+        return true;
+    }
+
+    @Override
+    public boolean update() {
+        return false;
+    }
+
+    @Override
+    public void delete() {
+        return;
     }
 }
