@@ -59,8 +59,7 @@ public class Homework2 extends DBTest {
     public void bulkInsertGenres(){
         Integer before = (Integer) executeSQL("SELECT COUNT(*) as COUNT FROM genres").get(0).get("COUNT");
 
-        //TODO fill this in
-        executeUpdate("INSERT");
+        executeUpdate("INSERT INTO genres(Name) VALUES ('Folktronica'), ('Math Rock'), ('Pirate Metal'), ('lowercase'), ('The good shtuff')");
 
         Integer after = (Integer) executeSQL("SELECT COUNT(*) as COUNT FROM genres").get(0).get("COUNT");
         assertEquals(before + 5, after);
