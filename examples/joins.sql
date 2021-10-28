@@ -35,4 +35,5 @@ FROM
      ON albums.ArtistId = artists.ArtistId
 WHERE artists.name = "AC/DC";
 
+CREATE VIEW tracksPlus AS SELECT tracks.*, genres.Name as GenreName, artists.Name as ArtistName FROM tracks JOIN genres ON genres.GenreId = tracks.GenreId JOIN albums ON tracks.AlbumId = albums.AlbumId JOIN artists ON albums.ArtistId = artists.ArtistId;
 
