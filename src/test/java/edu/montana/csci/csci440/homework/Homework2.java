@@ -15,8 +15,6 @@ public class Homework2 extends DBTest {
      * Create a view tracksPlus to display the artist, song title, album, and genre for all tracks.
      */
     public void createTracksPlusView(){
-        //TODO fill this in
-//        executeDDL("CREATE VIEW tracksPlus AS SELECT tracks.*, artists.Name as ArtistName, genre.Name as GenreName FROM tracks JOIN artists ON tracks.ArtistId = artists.ArtistId JOIN genre ON genre.GenreId = tracks.GenreId");
         executeDDL("CREATE VIEW tracksPlus AS SELECT tracks.*, genres.Name as GenreName, artists.Name as ArtistName, albums.Title as AlbumTitle FROM tracks JOIN genres ON genres.GenreId = tracks.GenreId JOIN albums ON tracks.AlbumId = albums.AlbumId JOIN artists ON albums.ArtistId = artists.ArtistId");
 
 
@@ -37,9 +35,8 @@ public class Homework2 extends DBTest {
      * Create a table grammy_category
      */
     public void createGrammyInfoTable(){
-        //TODO fill these in
-        executeDDL("create table grammy_categories");
-        executeDDL("create table grammy_infos");
+        executeDDL("create table grammy_categories(GrammyCategoryId INTEGER NOT NULL PRIMARY KEY, Name NVARCHAR(160))");
+        executeDDL("create table grammy_infos(ArtistId INTEGER, AlbumId INTEGER, TrackId INTEGER, GrammyCategoryId INTEGER, Status NVARCHAR(160))");
 
         // TEST CODE
         executeUpdate("INSERT INTO grammy_categories(Name) VALUES ('Greatest Ever');");
