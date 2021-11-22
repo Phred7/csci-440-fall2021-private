@@ -1,10 +1,13 @@
 package edu.montana.csci.csci440.helpers;
 
 import edu.montana.csci.csci440.model.Employee;
+import edu.montana.csci.csci440.util.DB;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
 public class EmployeeHelper {
 
@@ -16,15 +19,38 @@ public class EmployeeHelper {
         return "<ul>" + makeTree(employee, employeeMap) + "</ul>";
     }
 
-    // TODO - currently this method just uses the employee.getReports() function, which
-    //  issues a query.  Change that to use the employeeMap variable instead
+//    // TODO - currently this method just uses the employee.getReports() function, which
+//    //  issues a query.  Change that to use the employeeMap variable instead
+//    public static String makeTree(Employee employee, Map<Long, List<Employee>> employeeMap) {
+//        String list = "<li><a href='/employees" + employee.getEmployeeId() + "'>"
+//                + employee.getEmail() + "</a><ul>";
+//        List<Employee> reports = employee.getReports();
+//        for (Employee report : reports) {
+//            list += makeTree(report, employeeMap);
+//        }
+//        System.out.println(list);
+//        return list + "</ul></li>";
+//    }
+
     public static String makeTree(Employee employee, Map<Long, List<Employee>> employeeMap) {
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT * FROM employees")) {
+            ResultSet results = stmt.executeQuery();
+            List<Employee> resultList = new LinkedList<>();
+            while (results.next()) {
+                employeeMap.put(results.getLong("EmployeeId"), Collections.emptyList());
+            }
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
         String list = "<li><a href='/employees" + employee.getEmployeeId() + "'>"
                 + employee.getEmail() + "</a><ul>";
-        List<Employee> reports = employee.getReports();
+        List<Employee> reports = employeeMap.get(employee.getEmployeeId());
         for (Employee report : reports) {
             list += makeTree(report, employeeMap);
         }
+        System.out.println(list);
         return list + "</ul></li>";
     }
 }

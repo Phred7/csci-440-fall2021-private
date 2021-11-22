@@ -4,6 +4,7 @@ import edu.montana.csci.csci440.util.DB;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,22 @@ public class Employee extends Model {
 
     public static List<Employee.SalesSummary> getSalesSummaries() {
         //TODO - a GROUP BY query to determine the sales (look at the invoices table), using the SalesSummary class
-        return Collections.emptyList();
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT SUM(invoices.Total) as SalesTotal, COUNT(InvoiceId) as SalesCount, e.FirstName, e.LastName ,e.Email\n" +
+                             "FROM invoices\n" +
+                             "        JOIN customers c on invoices.CustomerId = c.CustomerId\n" +
+                             "        JOIN employees e on c.SupportRepId = e.EmployeeId\n" +
+                             "GROUP BY EmployeeId;")) {
+            ResultSet results = stmt.executeQuery();
+            List<Employee.SalesSummary> salesSummaryList = new ArrayList<>();
+            do {
+                salesSummaryList.add(new SalesSummary(results));
+            } while (results.next());
+            return salesSummaryList;
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
     }
 
     @Override
@@ -72,10 +88,11 @@ public class Employee extends Model {
         if (verify()) {
             try (Connection conn = DB.connect();
                  PreparedStatement stmt = conn.prepareStatement(
-                         "INSERT INTO employees (FirstName, LastName, Email) VALUES (?, ?, ?)")) {
+                         "INSERT INTO employees (FirstName, LastName, Email, Title) VALUES (?, ?, ?, ?)")) {
                 stmt.setString(1, this.getFirstName());
                 stmt.setString(2, this.getLastName());
                 stmt.setString(3, this.getEmail());
+                stmt.setString(4, this.title);
                 stmt.executeUpdate();
                 employeeId = DB.getLastID(conn);
                 return true;
@@ -151,8 +168,7 @@ public class Employee extends Model {
         }
     }
     public Employee getBoss() {
-        //TODO implement
-        return null;
+        return Employee.find(this.reportsTo);
     }
 
     public static List<Employee> all() {
@@ -178,7 +194,18 @@ public class Employee extends Model {
     }
 
     public static Employee findByEmail(String newEmailAddress) {
-        throw new UnsupportedOperationException("Implement me");
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM employees WHERE Email=?")) {
+            stmt.setString(1, newEmailAddress);
+            ResultSet results = stmt.executeQuery();
+            if (results.next()) {
+                return new Employee(results);
+            } else {
+                return null;
+            }
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
     }
 
     public static Employee find(long employeeId) {
@@ -201,7 +228,7 @@ public class Employee extends Model {
     }
 
     public void setReportsTo(Employee employee) {
-        // TODO implement
+        this.reportsTo = employee.getEmployeeId();
     }
 
     public static class SalesSummary {

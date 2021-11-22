@@ -41,3 +41,12 @@ create table grammy_categories(GrammyCategoryId INTEGER, Name NVARCHAR(160));
 create table grammy_infos(ArtistId INTEGER, AlbumId INTEGER, TrackId INTEGER, GrammyCategoryId INTEGER, Status NVARCHAR(160));
 INSERT INTO grammy_categories(Name) VALUES ('Greatest Ever');
 INSERT INTO grammy_infos(ArtistId, AlbumId, TrackId, GrammyCategoryId, Status) VALUES (1, 1, 1, (SELECT GrammyCategoryId FROM grammy_categories),'Won');
+
+SELECT customers.* FROM customers WHERE (CustomerId + SupportRepId) > 10;
+
+BEGIN TRANSACTION;
+ALTER TABLE customers
+ADD COLUMN TotalFruit INTEGER;
+UPDATE customers
+SET TotalFruit=(SupportRepId + customers.CustomerId);
+COMMIT;

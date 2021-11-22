@@ -99,7 +99,26 @@ WHERE tracks.Name LIKE "A%"
 GROUP BY albums.ArtistId
 HAVING Tracks > 2;
 
+SELECT SUM(invoices.Total) as SalesTotal, COUNT(InvoiceId) as SalesCount, e.FirstName, e.LastName ,e.Email
+FROM invoices
+        JOIN customers c on invoices.CustomerId = c.CustomerId
+        JOIN employees e on c.SupportRepId = e.EmployeeId
+GROUP BY EmployeeId;
 
+SELECT COUNT(InvoiceId) as NumberSales, e.Email
+FROM invoices
+         JOIN customers c on invoices.CustomerId = c.CustomerId
+         JOIN employees e on c.SupportRepId = e.EmployeeId
+GROUP BY EmployeeId;
+
+
+-- Calculate run time of artists by summing the tracks
+SELECT artists.Name,
+       SUM(tracks.Milliseconds) as Milliseconds
+FROM tracks
+         JOIN albums on tracks.AlbumId = albums.AlbumId
+         JOIN artists on albums.ArtistId = artists.ArtistId
+GROUP BY albums.ArtistId;
 
 
 
