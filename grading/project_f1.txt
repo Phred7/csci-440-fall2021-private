@@ -9,14 +9,18 @@
 [INFO] Copying 33 resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ CSCI_440_Project ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 23 source files to /home/carson/Projects/msu/csci-440-fall2021/grading/scripts/repos/walker_ward/target/classes
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ CSCI_440_Project ---
 [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 [INFO] skip non existing resourceDirectory /home/carson/Projects/msu/csci-440-fall2021/grading/scripts/repos/walker_ward/src/test/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ CSCI_440_Project ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 13 source files to /home/carson/Projects/msu/csci-440-fall2021/grading/scripts/repos/walker_ward/target/test-classes
 [INFO] 
 [INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ CSCI_440_Project ---
 [INFO] 
@@ -27,8 +31,8 @@
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.318 s <<< FAILURE! - in edu.montana.csci.csci440.model.InvoicesTest
-[ERROR] testInvoiceFieldsLoad  Time elapsed: 0.279 s  <<< FAILURE!
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.24 s <<< FAILURE! - in edu.montana.csci.csci440.model.InvoicesTest
+[ERROR] testInvoiceFieldsLoad  Time elapsed: 0.209 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <Stuttgart> but was: <null>
 	at edu.montana.csci.csci440.model.InvoicesTest.testInvoiceFieldsLoad(InvoicesTest.java:22)
 
@@ -39,8 +43,8 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.081 s <<< FAILURE! - in edu.montana.csci.csci440.model.ArtistTest
-[ERROR] testValidationWorks  Time elapsed: 0.005 s  <<< FAILURE!
+[ERROR] Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.078 s <<< FAILURE! - in edu.montana.csci.csci440.model.ArtistTest
+[ERROR] testValidationWorks  Time elapsed: 0.004 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at edu.montana.csci.csci440.model.ArtistTest.testValidationWorks(ArtistTest.java:61)
 
@@ -50,28 +54,13 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
+<li><a href='/employees1'>andrew@chinookcorp.com</a><ul>
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 7, Failures: 3, Errors: 2, Skipped: 0, Time elapsed: 0.211 s <<< FAILURE! - in edu.montana.csci.csci440.model.EmployeeTest
-[ERROR] testUpdateWorks  Time elapsed: 0.014 s  <<< ERROR!
-java.lang.UnsupportedOperationException: Implement me
-	at edu.montana.csci.csci440.model.EmployeeTest.testUpdateWorks(EmployeeTest.java:79)
-
-[ERROR] testCreateWorks  Time elapsed: 0.03 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <edu.montana.csci.csci440.model.Employee@d1c82101> but was: <null>
-	at edu.montana.csci.csci440.model.EmployeeTest.testCreateWorks(EmployeeTest.java:46)
-
-[ERROR] testValidationWorks  Time elapsed: 0.009 s  <<< FAILURE!
+[ERROR] Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.068 s <<< FAILURE! - in edu.montana.csci.csci440.model.EmployeeTest
+[ERROR] testValidationWorks  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <3> but was: <2>
-	at edu.montana.csci.csci440.model.EmployeeTest.testValidationWorks(EmployeeTest.java:54)
-
-[ERROR] testEmployeeHelperOnlyIssuesOneQuery  Time elapsed: 0.108 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at edu.montana.csci.csci440.model.EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery(EmployeeTest.java:88)
-
-[ERROR] testEmployeeSalesReport  Time elapsed: 0.004 s  <<< ERROR!
-java.lang.IndexOutOfBoundsException: Index: 0
-	at edu.montana.csci.csci440.model.EmployeeTest.testEmployeeSalesReport(EmployeeTest.java:94)
+	at edu.montana.csci.csci440.model.EmployeeTest.testValidationWorks(EmployeeTest.java:60)
 
 [INFO] Running edu.montana.csci.csci440.model.TrackTest
 Resetting DB After Test...
@@ -85,41 +74,41 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 11, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.166 s <<< FAILURE! - in edu.montana.csci.csci440.model.TrackTest
-[ERROR] testAlbumNameIsStoredOnTrack  Time elapsed: 0 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <47> but was: <48>
+[ERROR] Tests run: 11, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.115 s <<< FAILURE! - in edu.montana.csci.csci440.model.TrackTest
+[ERROR] testAlbumNameIsStoredOnTrack  Time elapsed: 0.005 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <43> but was: <44>
 	at edu.montana.csci.csci440.model.TrackTest.testAlbumNameIsStoredOnTrack(TrackTest.java:96)
 
 [ERROR] testOrderByWorks  Time elapsed: 0.005 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <É Uma Partida De Futebol> but was: <For Those About To Rock (We Salute You)>
 	at edu.montana.csci.csci440.model.TrackTest.testOrderByWorks(TrackTest.java:102)
 
-[ERROR] testDeleteWorks  Time elapsed: 0.022 s  <<< FAILURE!
+[ERROR] testDeleteWorks  Time elapsed: 0.029 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <null> but was: <edu.montana.csci.csci440.model.Track@7908cf04>
 	at edu.montana.csci.csci440.model.TrackTest.testDeleteWorks(TrackTest.java:54)
 
-[ERROR] testTrackListsWorks  Time elapsed: 0.005 s  <<< FAILURE!
+[ERROR] testTrackListsWorks  Time elapsed: 0.004 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <3> but was: <0>
 	at edu.montana.csci.csci440.model.TrackTest.testTrackListsWorks(TrackTest.java:108)
 
-[ERROR] testValidationWorks  Time elapsed: 0.004 s  <<< FAILURE!
+[ERROR] testValidationWorks  Time elapsed: 0.002 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at edu.montana.csci.csci440.model.TrackTest.testValidationWorks(TrackTest.java:61)
 
-[ERROR] trackCountIsCachedInRedis  Time elapsed: 0.009 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <62> but was: <63>
+[ERROR] trackCountIsCachedInRedis  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <58> but was: <59>
 	at edu.montana.csci.csci440.model.TrackTest.trackCountIsCachedInRedis(TrackTest.java:120)
 
-[ERROR] testArtistNameIsStoredOnTrack  Time elapsed: 0.011 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <69> but was: <71>
+[ERROR] testArtistNameIsStoredOnTrack  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <65> but was: <67>
 	at edu.montana.csci.csci440.model.TrackTest.testArtistNameIsStoredOnTrack(TrackTest.java:87)
 
 [INFO] Running edu.montana.csci.csci440.model.PlaylistsTest
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! - in edu.montana.csci.csci440.model.PlaylistsTest
-[ERROR] testPlaylistFieldsLoad  Time elapsed: 0.001 s  <<< FAILURE!
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! - in edu.montana.csci.csci440.model.PlaylistsTest
+[ERROR] testPlaylistFieldsLoad  Time elapsed: 0 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <213> but was: <0>
 	at edu.montana.csci.csci440.model.PlaylistsTest.testPlaylistFieldsLoad(PlaylistsTest.java:22)
 
@@ -129,8 +118,8 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.061 s <<< FAILURE! - in edu.montana.csci.csci440.model.AlbumTest
-[ERROR] testValidationWorks  Time elapsed: 0.003 s  <<< FAILURE!
+[ERROR] Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! - in edu.montana.csci.csci440.model.AlbumTest
+[ERROR] testValidationWorks  Time elapsed: 0.002 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at edu.montana.csci.csci440.model.AlbumTest.testValidationWorks(AlbumTest.java:45)
 
@@ -138,8 +127,8 @@ org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.018 s <<< FAILURE! - in edu.montana.csci.csci440.model.CustomerTest
-[ERROR] testCustomerFieldsLoad  Time elapsed: 0.005 s  <<< FAILURE!
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.01 s <<< FAILURE! - in edu.montana.csci.csci440.model.CustomerTest
+[ERROR] testCustomerFieldsLoad  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <luisg@embraer.com.br> but was: <null>
 	at edu.montana.csci.csci440.model.CustomerTest.testCustomerFieldsLoad(CustomerTest.java:21)
 
@@ -150,29 +139,24 @@ org.opentest4j.AssertionFailedError: expected: <luisg@embraer.com.br> but was: <
 [ERROR]   AlbumTest.testValidationWorks:45 expected: <false> but was: <true>
 [ERROR]   ArtistTest.testValidationWorks:61 expected: <false> but was: <true>
 [ERROR]   CustomerTest.testCustomerFieldsLoad:21 expected: <luisg@embraer.com.br> but was: <null>
-[ERROR]   EmployeeTest.testCreateWorks:46 expected: <edu.montana.csci.csci440.model.Employee@d1c82101> but was: <null>
-[ERROR]   EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery:88 expected: <true> but was: <false>
-[ERROR]   EmployeeTest.testValidationWorks:54 expected: <3> but was: <2>
+[ERROR]   EmployeeTest.testValidationWorks:60 expected: <3> but was: <2>
 [ERROR]   InvoicesTest.testInvoiceFieldsLoad:22 expected: <Stuttgart> but was: <null>
 [ERROR]   PlaylistsTest.testPlaylistFieldsLoad:22 expected: <213> but was: <0>
-[ERROR]   TrackTest.testAlbumNameIsStoredOnTrack:96 expected: <47> but was: <48>
-[ERROR]   TrackTest.testArtistNameIsStoredOnTrack:87 expected: <69> but was: <71>
+[ERROR]   TrackTest.testAlbumNameIsStoredOnTrack:96 expected: <43> but was: <44>
+[ERROR]   TrackTest.testArtistNameIsStoredOnTrack:87 expected: <65> but was: <67>
 [ERROR]   TrackTest.testDeleteWorks:54 expected: <null> but was: <edu.montana.csci.csci440.model.Track@7908cf04>
 [ERROR]   TrackTest.testOrderByWorks:102 expected: <É Uma Partida De Futebol> but was: <For Those About To Rock (We Salute You)>
 [ERROR]   TrackTest.testTrackListsWorks:108 expected: <3> but was: <0>
 [ERROR]   TrackTest.testValidationWorks:61 expected: <false> but was: <true>
-[ERROR]   TrackTest.trackCountIsCachedInRedis:120 expected: <62> but was: <63>
-[ERROR] Errors: 
-[ERROR]   EmployeeTest.testEmployeeSalesReport:94 » IndexOutOfBounds Index: 0
-[ERROR]   EmployeeTest.testUpdateWorks:79 » UnsupportedOperation Implement me
+[ERROR]   TrackTest.trackCountIsCachedInRedis:120 expected: <58> but was: <59>
 [INFO] 
-[ERROR] Tests run: 38, Failures: 15, Errors: 2, Skipped: 0
+[ERROR] Tests run: 38, Failures: 13, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  4.341 s
-[INFO] Finished at: 2021-11-17T15:31:39-07:00
+[INFO] Total time:  4.749 s
+[INFO] Finished at: 2021-11-30T10:02:12-07:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1:test (default-test) on project CSCI_440_Project: There are test failures.
 [ERROR] 
