@@ -102,7 +102,15 @@ public class Homework3 extends DBTest {
      * */
     public void selectCustomersMeetingCriteria() throws SQLException {
         // HINT: join to invoice items and do a group by/having to get the right answer
-        List<Map<String, Object>> tracks = executeSQL("" );
+        List<Map<String, Object>> tracks = executeSQL("SELECT customers.Email, SupportRepId, t.GenreId\n" +
+                "FROM customers\n" +
+                "         JOIN invoices i on customers.CustomerId = i.CustomerId\n" +
+                "         JOIN invoice_items ii on i.InvoiceId = ii.InvoiceId\n" +
+                "         JOIN tracks t on ii.TrackId = t.TrackId\n" +
+                "         JOIN employees e on e.EmployeeId = customers.SupportRepId\n" +
+                "         JOIN genres g on g.GenreId = t.GenreId\n" +
+                "GROUP BY g.Name, e.FirstName, e.LastName, customers.Email\n" +
+                "HAVING g.Name == \"Rock\" AND e.FirstName == \"Jane\" and e.LastName == \"Peacock\";" );
         assertEquals(21, tracks.size());
     }
 

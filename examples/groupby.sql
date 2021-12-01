@@ -136,5 +136,24 @@ FROM albums
 GROUP BY ii.TrackId
 HAVING count(ii.InvoiceId) > 1;
 
+-- Select customers emails who are assigned to Jane Peacock as a Rep and who have purchased something from the 'Rock' Genre
+SELECT customers.Email, SupportRepId, t.GenreId
+FROM customers
+         JOIN invoices i on customers.CustomerId = i.CustomerId
+         JOIN invoice_items ii on i.InvoiceId = ii.InvoiceId
+         JOIN tracks t on ii.TrackId = t.TrackId
+         JOIN employees e on e.EmployeeId = customers.SupportRepId
+         JOIN genres g on g.GenreId = t.GenreId
+GROUP BY g.Name, e.FirstName, e.LastName, customers.Email
+HAVING g.Name == "Rock" AND e.FirstName == "Jane" and e.LastName == "Peacock";
+
+-- Duplicate from prev. Does with knowledge of ID's
+SELECT customers.Email, SupportRepId, t.GenreId
+FROM customers
+         JOIN invoices i on customers.CustomerId = i.CustomerId
+         JOIN invoice_items ii on i.InvoiceId = ii.InvoiceId
+         JOIN tracks t on ii.TrackId = t.TrackId
+GROUP BY t.GenreId, SupportRepId, customers.Email
+HAVING t.GenreId == 1 AND SupportRepId == 3;
 
 
