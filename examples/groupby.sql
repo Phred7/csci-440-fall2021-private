@@ -91,7 +91,7 @@ HAVING Tracks >= 10 AND tracks.Name LIKE "A%";
 SELECT artists.Name,
        COUNT(tracks.TrackId) as Tracks,
        COUNT(DISTINCT albums.AlbumId) as Albums,
-       SUM(tracks.Milliseconds) as Milliseconds
+       SUM(tracks.Milliseconds) as Milliseconds   
 FROM tracks
          JOIN albums on tracks.AlbumId = albums.AlbumId
          JOIN artists on albums.ArtistId = artists.ArtistId
