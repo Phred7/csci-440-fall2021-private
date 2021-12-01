@@ -39,7 +39,7 @@ public class EmployeeHelper {
             ResultSet results = stmt.executeQuery();
             List<Employee> resultList = new LinkedList<>();
             while (results.next()) {
-                employeeMap.put(results.getLong("EmployeeId"), );
+                // employeeMap.put(results.getLong("EmployeeId"), ); //TODO
             }
         } catch (SQLException sqlException) {
             throw new RuntimeException(sqlException);

@@ -120,6 +120,16 @@ FROM tracks
          JOIN artists on albums.ArtistId = artists.ArtistId
 GROUP BY albums.ArtistId;
 
+-- Select tracks that have been sold more than once (> 1)
+SELECT tracks.TrackId
+FROM tracks
+    JOIN invoice_items ii on tracks.TrackId = ii.TrackId
+GROUP BY ii.TrackId
+HAVING count(ii.InvoiceId) > 1;
+
+
+-- Select the albums that have tracks that have been sold more than once (> 1)
+
 
 
 

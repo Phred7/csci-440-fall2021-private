@@ -31,33 +31,42 @@ public class Homework3 extends DBTest {
         Track track2 = Track.find(2);
         Long track2InitialTime = track2.getMilliseconds();
 
+//        System.out.println("1: " + track1InitialTime);
+//        System.out.println("2: " + track2InitialTime);
+//        System.out.println("");
+//        System.out.println("1-10: " + (track1InitialTime-10));
+//        System.out.println("2+10: " + (track2InitialTime+10));
+//        System.out.println("");
+
         try(Connection connection = DB.connect()){
             connection.setAutoCommit(false);
-            PreparedStatement subtract = connection.prepareStatement("TODO");
-            subtract.setLong(1, 0);
-            subtract.setLong(2, 0);
+            PreparedStatement subtract = connection.prepareStatement("UPDATE tracks SET Milliseconds=(? - 10) WHERE Milliseconds = ? AND TrackId = 1");
+            subtract.setLong(1, track1InitialTime);
+            subtract.setLong(2, track1InitialTime);
             subtract.execute();
 
-            PreparedStatement add = connection.prepareStatement("TODO");
-            subtract.setLong(1, 0);
-            subtract.setLong(2, 0);
-            subtract.execute();
+            PreparedStatement add = connection.prepareStatement("UPDATE tracks SET Milliseconds=(? + 10) WHERE Milliseconds = ? AND TrackId = 2");
+            add.setLong(1, track2InitialTime);
+            add.setLong(2, track2InitialTime);
+            add.execute();
 
-            // commit with the connection
+            connection.commit();
         }
 
         // refresh tracks from db
         track1 = Track.find(1);
         track2 = Track.find(2);
-        assertEquals(track1.getMilliseconds(), track1InitialTime - 10);
-        assertEquals(track2.getMilliseconds(), track2InitialTime + 10);
+//        System.out.println("1: " + track1.getMilliseconds());
+//        System.out.println("2: " + track2.getMilliseconds());
+        assertEquals(track1InitialTime - 10, track1.getMilliseconds());
+        assertEquals(track2InitialTime + 10, track2.getMilliseconds());
     }
 
     @Test
     /*
      * Select tracks that have been sold more than once (> 1)
      *
-     * Select the albumbs that have tracks that have been sold more than once (> 1)
+     * Select the albums that have tracks that have been sold more than once (> 1)
      *   NOTE: This is NOT the same as albums whose tracks have been sold more than once!
      *         An album could have had three tracks, each sold once, and should not be included
      *         in this result.  It should only include the albums of the tracks found in the first
@@ -66,7 +75,11 @@ public class Homework3 extends DBTest {
     public void selectPopularTracksAndTheirAlbums() throws SQLException {
 
         // HINT: join to invoice items and do a group by/having to get the right answer
-        List<Map<String, Object>> tracks = executeSQL("");
+        List<Map<String, Object>> tracks = executeSQL("SELECT tracks.TrackId\n" +
+                "FROM tracks\n" +
+                "    JOIN invoice_items ii on tracks.TrackId = ii.TrackId\n" +
+                "GROUP BY ii.TrackId\n" +
+                "HAVING count(ii.InvoiceId) > 1;");
         assertEquals(256, tracks.size());
 
         // HINT: join to tracks and invoice items and do a group by/having to get the right answer
