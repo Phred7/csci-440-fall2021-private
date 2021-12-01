@@ -64,16 +64,22 @@ public class Track extends Model {
 
     public static Long count() {
         Jedis redisClient = new Jedis(); // use this class to access redis and create a cache
-        try (Connection conn = DB.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) as Count FROM tracks")) {
-            ResultSet results = stmt.executeQuery();
-            if (results.next()) {
-                return results.getLong("Count");
-            } else {
-                throw new IllegalStateException("Should find a count!");
+        String s = redisClient.get(REDIS_CACHE_KEY);
+        if (s == null){
+            try (Connection conn = DB.connect();
+                 PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) as Count FROM tracks")) {
+                ResultSet results = stmt.executeQuery();
+                if (results.next()) {
+                    redisClient.set(REDIS_CACHE_KEY, (results.getString("Count")));
+                    return results.getLong("Count");
+                } else {
+                    throw new IllegalStateException("Should find a count!");
+                }
+            } catch (SQLException sqlException) {
+                throw new RuntimeException(sqlException);
             }
-        } catch (SQLException sqlException) {
-            throw new RuntimeException(sqlException);
+        } else {
+            return Long.parseLong(s);
         }
     }
 
@@ -285,6 +291,8 @@ public class Track extends Model {
                 stmt.setObject(7, this.getUnitPrice());
                 stmt.executeUpdate();
                 trackId = DB.getLastID(conn);
+                Jedis redisClient = new Jedis();
+                redisClient.del(REDIS_CACHE_KEY);
                 return true;
             } catch (SQLException sqlException) {
                 throw new RuntimeException(sqlException);
@@ -319,5 +327,13 @@ public class Track extends Model {
 
     @Override
     public void delete() {
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "DELETE FROM tracks WHERE TrackId=?")) {
+            stmt.setLong(1, this.getTrackId());
+            stmt.executeUpdate();
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
     }
 }
