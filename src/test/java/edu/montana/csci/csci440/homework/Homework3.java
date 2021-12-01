@@ -84,7 +84,12 @@ public class Homework3 extends DBTest {
 
         // HINT: join to tracks and invoice items and do a group by/having to get the right answer
         //       note: you will need to use the DISTINCT operator to get the right result!
-        List<Map<String, Object>> albums = executeSQL("");
+        List<Map<String, Object>> albums = executeSQL("SELECT DISTINCT albums.AlbumId\n" +
+                "FROM albums\n" +
+                "    JOIN tracks t on albums.AlbumId = t.AlbumId\n" +
+                "    JOIN invoice_items ii on t.TrackId = ii.TrackId\n" +
+                "GROUP BY ii.TrackId\n" +
+                "HAVING count(ii.InvoiceId) > 1;");
         assertEquals(166, albums.size());
     }
 

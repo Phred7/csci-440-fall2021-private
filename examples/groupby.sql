@@ -129,7 +129,12 @@ HAVING count(ii.InvoiceId) > 1;
 
 
 -- Select the albums that have tracks that have been sold more than once (> 1)
-
+SELECT DISTINCT albums.AlbumId
+FROM albums
+    JOIN tracks t on albums.AlbumId = t.AlbumId
+    JOIN invoice_items ii on t.TrackId = ii.TrackId
+GROUP BY ii.TrackId
+HAVING count(ii.InvoiceId) > 1;
 
 
 
