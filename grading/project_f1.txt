@@ -27,8 +27,8 @@
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.183 s <<< FAILURE! - in edu.montana.csci.csci440.model.InvoicesTest
-[ERROR] testInvoiceFieldsLoad  Time elapsed: 0.162 s  <<< FAILURE!
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.214 s <<< FAILURE! - in edu.montana.csci.csci440.model.InvoicesTest
+[ERROR] testInvoiceFieldsLoad  Time elapsed: 0.187 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <Stuttgart> but was: <null>
 	at edu.montana.csci.csci440.model.InvoicesTest.testInvoiceFieldsLoad(InvoicesTest.java:22)
 
@@ -39,7 +39,7 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.081 s <<< FAILURE! - in edu.montana.csci.csci440.model.ArtistTest
+[ERROR] Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.063 s <<< FAILURE! - in edu.montana.csci.csci440.model.ArtistTest
 [ERROR] testValidationWorks  Time elapsed: 0.004 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at edu.montana.csci.csci440.model.ArtistTest.testValidationWorks(ArtistTest.java:61)
@@ -52,12 +52,12 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 7, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.101 s <<< FAILURE! - in edu.montana.csci.csci440.model.EmployeeTest
-[ERROR] testValidationWorks  Time elapsed: 0.006 s  <<< FAILURE!
+[ERROR] Tests run: 7, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.069 s <<< FAILURE! - in edu.montana.csci.csci440.model.EmployeeTest
+[ERROR] testValidationWorks  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <3> but was: <2>
 	at edu.montana.csci.csci440.model.EmployeeTest.testValidationWorks(EmployeeTest.java:60)
 
-[ERROR] testEmployeeHelperOnlyIssuesOneQuery  Time elapsed: 0.02 s  <<< ERROR!
+[ERROR] testEmployeeHelperOnlyIssuesOneQuery  Time elapsed: 0.018 s  <<< ERROR!
 java.lang.NullPointerException
 	at edu.montana.csci.csci440.model.EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery(EmployeeTest.java:92)
 
@@ -73,12 +73,12 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 11, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.153 s <<< FAILURE! - in edu.montana.csci.csci440.model.TrackTest
-[ERROR] testAlbumNameIsStoredOnTrack  Time elapsed: 0.001 s  <<< FAILURE!
+[ERROR] Tests run: 11, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.135 s <<< FAILURE! - in edu.montana.csci.csci440.model.TrackTest
+[ERROR] testAlbumNameIsStoredOnTrack  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <43> but was: <44>
 	at edu.montana.csci.csci440.model.TrackTest.testAlbumNameIsStoredOnTrack(TrackTest.java:96)
 
-[ERROR] testOrderByWorks  Time elapsed: 0.003 s  <<< FAILURE!
+[ERROR] testOrderByWorks  Time elapsed: 0.005 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <É Uma Partida De Futebol> but was: <For Those About To Rock (We Salute You)>
 	at edu.montana.csci.csci440.model.TrackTest.testOrderByWorks(TrackTest.java:102)
 
@@ -86,7 +86,7 @@ org.opentest4j.AssertionFailedError: expected: <É Uma Partida De Futebol> but w
 org.opentest4j.AssertionFailedError: expected: <3> but was: <0>
 	at edu.montana.csci.csci440.model.TrackTest.testTrackListsWorks(TrackTest.java:108)
 
-[ERROR] testValidationWorks  Time elapsed: 0.002 s  <<< FAILURE!
+[ERROR] testValidationWorks  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at edu.montana.csci.csci440.model.TrackTest.testValidationWorks(TrackTest.java:61)
 
@@ -98,7 +98,7 @@ org.opentest4j.AssertionFailedError: expected: <68> but was: <70>
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in edu.montana.csci.csci440.model.PlaylistsTest
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! - in edu.montana.csci.csci440.model.PlaylistsTest
 [ERROR] testPlaylistFieldsLoad  Time elapsed: 0 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <213> but was: <0>
 	at edu.montana.csci.csci440.model.PlaylistsTest.testPlaylistFieldsLoad(PlaylistsTest.java:22)
@@ -109,8 +109,8 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.043 s <<< FAILURE! - in edu.montana.csci.csci440.model.AlbumTest
-[ERROR] testValidationWorks  Time elapsed: 0.002 s  <<< FAILURE!
+[ERROR] Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.058 s <<< FAILURE! - in edu.montana.csci.csci440.model.AlbumTest
+[ERROR] testValidationWorks  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at edu.montana.csci.csci440.model.AlbumTest.testValidationWorks(AlbumTest.java:45)
 
@@ -118,8 +118,8 @@ org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.012 s <<< FAILURE! - in edu.montana.csci.csci440.model.CustomerTest
-[ERROR] testCustomerFieldsLoad  Time elapsed: 0.003 s  <<< FAILURE!
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.016 s <<< FAILURE! - in edu.montana.csci.csci440.model.CustomerTest
+[ERROR] testCustomerFieldsLoad  Time elapsed: 0.005 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <luisg@embraer.com.br> but was: <null>
 	at edu.montana.csci.csci440.model.CustomerTest.testCustomerFieldsLoad(CustomerTest.java:21)
 
@@ -146,8 +146,8 @@ org.opentest4j.AssertionFailedError: expected: <luisg@embraer.com.br> but was: <
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.777 s
-[INFO] Finished at: 2021-12-01T15:41:54-07:00
+[INFO] Total time:  2.995 s
+[INFO] Finished at: 2021-12-06T09:52:33-07:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1:test (default-test) on project CSCI_440_Project: There are test failures.
 [ERROR] 
