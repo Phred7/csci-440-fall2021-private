@@ -60,6 +60,13 @@ public class Employee extends Model {
         if (lastName == null || "".equals(lastName)) {
             addError("LastName can't be null!");
         }
+        if (email == null || "".equals(email)) {
+            addError("Email can't be null!");
+        } else {
+            if (!email.contains("@")) {
+                addError("Email must be a valid email (must contain '@')");
+            }
+        }
         return !hasErrors();
     }
 

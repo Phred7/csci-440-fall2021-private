@@ -304,7 +304,14 @@ public class Track extends Model {
 
     @Override
     public boolean verify() {
-        return true;
+        _errors.clear(); // clear any existing errors
+        if (name == null || "".equals(name)) {
+            addError("name can't be null or blank!");
+        }
+        if (albumId == null) {
+            addError("albumID can't be null!");
+        }
+        return !hasErrors();
     }
 
     @Override

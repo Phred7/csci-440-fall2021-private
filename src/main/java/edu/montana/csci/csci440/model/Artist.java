@@ -105,19 +105,12 @@ public class Artist extends Model {
 
     @Override
     public boolean verify() {
-        return true;
+        _errors.clear(); // clear any existing errors
+        if (name == null || "".equals(name)) {
+            addError("name can't be null or blank!");
+        }
+        return !hasErrors();
     }
-//    @Override
-//    public boolean verify() {
-//        _errors.clear(); // clear any existing errors
-//        if (firstName == null || "".equals(firstName)) {
-//            addError("FirstName can't be null or blank!");
-//        }
-//        if (lastName == null || "".equals(lastName)) {
-//            addError("LastName can't be null!");
-//        }
-//        return !hasErrors();
-//    }
 
     @Override
     public boolean update() {

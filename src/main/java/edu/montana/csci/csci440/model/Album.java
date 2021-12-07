@@ -138,7 +138,13 @@ public class Album extends Model {
 
     @Override
     public boolean verify() {
-        return true;
+        _errors.clear(); // clear any existing errors
+        if (title == null || "".equals(title)) {
+            addError("title can't be null or blank!");
+        }
+        if (artistId == null) {
+            addError("artistID can't be null!");
+        }
+        return !hasErrors();
     }
-
 }
