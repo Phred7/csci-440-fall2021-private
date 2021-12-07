@@ -15,7 +15,37 @@ public class EmployeeHelper {
         // TODO, change this to use a single query operation to get all employees
         Employee employee = Employee.find(1); // root employee
         // and use this data structure to maintain reference information needed to build the tree structure
-        Map<Long, List<Employee>> employeeMap = new HashMap<>();
+        Map<Long, List<Employee>> employeeMap = new HashMap<>(); // list is the list of who this employee reports to
+
+        List<Employee> allEmployees = Employee.all();
+
+        for(Employee currentEmployee : allEmployees){
+            Long reportsTo = currentEmployee.getReportsTo();
+            if (reportsTo == null){ // may be null instead
+                employeeMap.put(currentEmployee.getEmployeeId(), new ArrayList<Employee>());
+            } else {
+                List<Employee> employees = employeeMap.get(reportsTo); //this is a list containing all the employees that have the employee reportsTo as a boss
+                if(employees == null) {
+                    List<Employee> c_e = new ArrayList<>();
+                    c_e.add(currentEmployee);
+                    employeeMap.put(reportsTo, c_e);
+                } else {
+                    employees.add(currentEmployee);
+                }
+                employeeMap.put(currentEmployee.getEmployeeId(), new ArrayList<>());
+//                List<Employee> supervisors = new ArrayList<>();
+//                supervisors.add(allEmployees.get(reportsTo.intValue()));
+//                if (employees == null){
+//
+//                } else {
+//
+//                }
+//                Employee boss = allEmployees.get(reportsTo.intValue());
+//                System.out.println(currentEmployee.getFirstName());
+//                System.out.println(boss.getFirstName());
+            }
+        }
+
         return "<ul>" + makeTree(employee, employeeMap) + "</ul>";
     }
 
