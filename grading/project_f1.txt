@@ -29,7 +29,7 @@
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.243 s - in edu.montana.csci.csci440.model.InvoicesTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.21 s - in edu.montana.csci.csci440.model.InvoicesTest
 [INFO] Running edu.montana.csci.csci440.model.ArtistTest
 Resetting DB After Test...
 Resetting DB After Test...
@@ -37,19 +37,27 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.1 s - in edu.montana.csci.csci440.model.ArtistTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s - in edu.montana.csci.csci440.model.ArtistTest
 [INFO] Running edu.montana.csci.csci440.model.EmployeeTest
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
+<li><a href='/employees3'>jane@chinookcorp.com</a><ul>
+<li><a href='/employees4'>margaret@chinookcorp.com</a><ul>
+<li><a href='/employees5'>steve@chinookcorp.com</a><ul>
+<li><a href='/employees2'>nancy@chinookcorp.com</a><ul><li><a href='/employees3'>jane@chinookcorp.com</a><ul></ul></li><li><a href='/employees4'>margaret@chinookcorp.com</a><ul></ul></li><li><a href='/employees5'>steve@chinookcorp.com</a><ul></ul></li>
+<li><a href='/employees7'>robert@chinookcorp.com</a><ul>
+<li><a href='/employees8'>laura@chinookcorp.com</a><ul>
+<li><a href='/employees6'>michael@chinookcorp.com</a><ul><li><a href='/employees7'>robert@chinookcorp.com</a><ul></ul></li><li><a href='/employees8'>laura@chinookcorp.com</a><ul></ul></li>
+<li><a href='/employees1'>andrew@chinookcorp.com</a><ul><li><a href='/employees2'>nancy@chinookcorp.com</a><ul><li><a href='/employees3'>jane@chinookcorp.com</a><ul></ul></li><li><a href='/employees4'>margaret@chinookcorp.com</a><ul></ul></li><li><a href='/employees5'>steve@chinookcorp.com</a><ul></ul></li></ul></li><li><a href='/employees6'>michael@chinookcorp.com</a><ul><li><a href='/employees7'>robert@chinookcorp.com</a><ul></ul></li><li><a href='/employees8'>laura@chinookcorp.com</a><ul></ul></li></ul></li>
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 7, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.1 s <<< FAILURE! - in edu.montana.csci.csci440.model.EmployeeTest
-[ERROR] testEmployeeHelperOnlyIssuesOneQuery  Time elapsed: 0.036 s  <<< ERROR!
-java.lang.NullPointerException
-	at edu.montana.csci.csci440.model.EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery(EmployeeTest.java:92)
+[ERROR] Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.126 s <<< FAILURE! - in edu.montana.csci.csci440.model.EmployeeTest
+[ERROR] testEmployeeHelperOnlyIssuesOneQuery  Time elapsed: 0.067 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at edu.montana.csci.csci440.model.EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery(EmployeeTest.java:94)
 
 [INFO] Running edu.montana.csci.csci440.model.TrackTest
 Resetting DB After Test...
@@ -63,12 +71,12 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 11, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.178 s <<< FAILURE! - in edu.montana.csci.csci440.model.TrackTest
-[ERROR] testAlbumNameIsStoredOnTrack  Time elapsed: 0.004 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <43> but was: <44>
+[ERROR] Tests run: 11, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.196 s <<< FAILURE! - in edu.montana.csci.csci440.model.TrackTest
+[ERROR] testAlbumNameIsStoredOnTrack  Time elapsed: 0.007 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <51> but was: <52>
 	at edu.montana.csci.csci440.model.TrackTest.testAlbumNameIsStoredOnTrack(TrackTest.java:96)
 
-[ERROR] testOrderByWorks  Time elapsed: 0.005 s  <<< FAILURE!
+[ERROR] testOrderByWorks  Time elapsed: 0.003 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <É Uma Partida De Futebol> but was: <For Those About To Rock (We Salute You)>
 	at edu.montana.csci.csci440.model.TrackTest.testOrderByWorks(TrackTest.java:102)
 
@@ -77,15 +85,15 @@ org.opentest4j.AssertionFailedError: expected: <3> but was: <0>
 	at edu.montana.csci.csci440.model.TrackTest.testTrackListsWorks(TrackTest.java:108)
 
 [ERROR] testArtistNameIsStoredOnTrack  Time elapsed: 0.007 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <69> but was: <71>
+org.opentest4j.AssertionFailedError: expected: <77> but was: <79>
 	at edu.montana.csci.csci440.model.TrackTest.testArtistNameIsStoredOnTrack(TrackTest.java:87)
 
 [INFO] Running edu.montana.csci.csci440.model.PlaylistsTest
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! - in edu.montana.csci.csci440.model.PlaylistsTest
-[ERROR] testPlaylistFieldsLoad  Time elapsed: 0.003 s  <<< FAILURE!
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.009 s <<< FAILURE! - in edu.montana.csci.csci440.model.PlaylistsTest
+[ERROR] testPlaylistFieldsLoad  Time elapsed: 0.001 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <213> but was: <0>
 	at edu.montana.csci.csci440.model.PlaylistsTest.testPlaylistFieldsLoad(PlaylistsTest.java:22)
 
@@ -95,31 +103,30 @@ Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s - in edu.montana.csci.csci440.model.AlbumTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s - in edu.montana.csci.csci440.model.AlbumTest
 [INFO] Running edu.montana.csci.csci440.model.CustomerTest
 Resetting DB After Test...
 Resetting DB After Test...
 Resetting DB After Test...
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s - in edu.montana.csci.csci440.model.CustomerTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s - in edu.montana.csci.csci440.model.CustomerTest
 [INFO] 
 [INFO] Results:
 [INFO] 
 [ERROR] Failures: 
+[ERROR]   EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery:94 expected: <true> but was: <false>
 [ERROR]   PlaylistsTest.testPlaylistFieldsLoad:22 expected: <213> but was: <0>
-[ERROR]   TrackTest.testAlbumNameIsStoredOnTrack:96 expected: <43> but was: <44>
-[ERROR]   TrackTest.testArtistNameIsStoredOnTrack:87 expected: <69> but was: <71>
+[ERROR]   TrackTest.testAlbumNameIsStoredOnTrack:96 expected: <51> but was: <52>
+[ERROR]   TrackTest.testArtistNameIsStoredOnTrack:87 expected: <77> but was: <79>
 [ERROR]   TrackTest.testOrderByWorks:102 expected: <É Uma Partida De Futebol> but was: <For Those About To Rock (We Salute You)>
 [ERROR]   TrackTest.testTrackListsWorks:108 expected: <3> but was: <0>
-[ERROR] Errors: 
-[ERROR]   EmployeeTest.testEmployeeHelperOnlyIssuesOneQuery:92 » NullPointer
 [INFO] 
-[ERROR] Tests run: 38, Failures: 5, Errors: 1, Skipped: 0
+[ERROR] Tests run: 38, Failures: 6, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.690 s
-[INFO] Finished at: 2021-12-07T10:20:19-07:00
+[INFO] Total time:  5.110 s
+[INFO] Finished at: 2021-12-08T09:29:03-07:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1:test (default-test) on project CSCI_440_Project: There are test failures.
 [ERROR] 
