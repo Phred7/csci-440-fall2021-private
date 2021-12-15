@@ -19,68 +19,30 @@ public class EmployeeHelper {
 
         List<Employee> allEmployees = Employee.all();
 
-        for(Employee currentEmployee : allEmployees){
+        for (Employee currentEmployee : allEmployees) {
             Long reportsTo = currentEmployee.getReportsTo();
-            if (reportsTo == null){ // may be null instead
-                employeeMap.put(currentEmployee.getEmployeeId(), new ArrayList<Employee>());
-            } else {
-                List<Employee> employees = employeeMap.get(reportsTo); //this is a list containing all the employees that have the employee reportsTo as a boss
-                if(employees == null) {
-                    List<Employee> c_e = new ArrayList<>();
-                    c_e.add(currentEmployee);
-                    employeeMap.put(reportsTo, c_e);
-                } else {
-                    employees.add(currentEmployee);
+            employeeMap.put(currentEmployee.getEmployeeId(), null);
+            if (reportsTo != 0) {
+                List<Employee> employees = employeeMap.get(reportsTo);
+                if (employees == null) {
+                    employees = new ArrayList<>();
                 }
-                employeeMap.put(currentEmployee.getEmployeeId(), new ArrayList<>());
-//                List<Employee> supervisors = new ArrayList<>();
-//                supervisors.add(allEmployees.get(reportsTo.intValue()));
-//                if (employees == null){
-//
-//                } else {
-//
-//                }
-//                Employee boss = allEmployees.get(reportsTo.intValue());
-//                System.out.println(currentEmployee.getFirstName());
-//                System.out.println(boss.getFirstName());
+                employees.add(currentEmployee);
+                employeeMap.put(reportsTo, employees);
             }
         }
 
         return "<ul>" + makeTree(employee, employeeMap) + "</ul>";
     }
 
-//    // TODO - currently this method just uses the employee.getReports() function, which
-//    //  issues a query.  Change that to use the employeeMap variable instead
-//    public static String makeTree(Employee employee, Map<Long, List<Employee>> employeeMap) {
-//        String list = "<li><a href='/employees" + employee.getEmployeeId() + "'>"
-//                + employee.getEmail() + "</a><ul>";
-//        List<Employee> reports = employee.getReports();
-//        for (Employee report : reports) {
-//            list += makeTree(report, employeeMap);
-//        }
-//        System.out.println(list);
-//        return list + "</ul></li>";
-//    }
-
     public static String makeTree(Employee employee, Map<Long, List<Employee>> employeeMap) {
-        try (Connection conn = DB.connect();
-             PreparedStatement stmt = conn.prepareStatement(
-                     "SELECT * FROM employees")) {
-            ResultSet results = stmt.executeQuery();
-            List<Employee> resultList = new LinkedList<>();
-            while (results.next()) {
-                // employeeMap.put(results.getLong("EmployeeId"), ); //TODO
+        StringBuilder list = new StringBuilder("<li><a href='/employees" + employee.getEmployeeId() + "'>" + employee.getEmail() + "</a><ul>");
+        List<Employee> subordinates = employeeMap.get(employee.getEmployeeId());
+        if(subordinates != null) {
+            for (Employee subordinate : subordinates) {
+                list.append(makeTree(subordinate, employeeMap));
             }
-        } catch (SQLException sqlException) {
-            throw new RuntimeException(sqlException);
         }
-        String list = "<li><a href='/employees" + employee.getEmployeeId() + "'>"
-                + employee.getEmail() + "</a><ul>";
-        List<Employee> reports = employeeMap.get(employee.getEmployeeId());
-        for (Employee report : reports) {
-            list += makeTree(report, employeeMap);
-        }
-        System.out.println(list);
         return list + "</ul></li>";
     }
 }

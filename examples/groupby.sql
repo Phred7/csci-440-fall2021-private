@@ -157,3 +157,10 @@ GROUP BY t.GenreId, SupportRepId, customers.Email
 HAVING t.GenreId == 1 AND SupportRepId == 3;
 
 
+-- Get tracks in order by name for a playlist
+SELECT t.*
+FROM playlists
+    JOIN playlist_track pt on playlists.PlaylistId = pt.PlaylistId
+    JOIN tracks t on t.TrackId = pt.TrackId
+WHERE playlists.PlaylistId == 3
+ORDER BY t.Name;
