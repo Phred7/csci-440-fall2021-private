@@ -164,3 +164,14 @@ FROM playlists
     JOIN tracks t on t.TrackId = pt.TrackId
 WHERE playlists.PlaylistId == 3
 ORDER BY t.Name;
+
+-- Get all tracks and their artist
+SELECT tracks.*, a.Title as album, a2.Name as artist
+FROM tracks
+    JOIN albums a on tracks.AlbumId = a.AlbumId
+    JOIN artists a2 on a.ArtistId = a2.ArtistId
+WHERE tracks.TrackId == 100;
+
+SELECT *
+FROM tracks
+WHERE TrackId = ?;

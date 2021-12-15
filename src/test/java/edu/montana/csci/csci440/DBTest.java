@@ -23,7 +23,7 @@ public class DBTest {
         }
         try {
             Jedis jedis = new Jedis();
-            jedis.del(Track.REDIS_CACHE_KEY);
+            jedis.del(Track.REDIS_CACHE_KEY_COUNT);
         } catch (Exception e) {
             System.out.println("No redis found to reset");
         }
