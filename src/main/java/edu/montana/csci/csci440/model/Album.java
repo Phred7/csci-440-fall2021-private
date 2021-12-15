@@ -17,6 +17,7 @@ public class Album extends Model {
     String title;
 
     public Album() {
+        artistId = 1l;
     }
 
     private Album(ResultSet results) throws SQLException {
@@ -29,9 +30,9 @@ public class Album extends Model {
         return Artist.find(artistId);
     }
 
-    public void setArtist(Artist artist) {
-        artistId = artist.getArtistId();
-    }
+    public void setArtist(Artist artist) { artistId = artist.getArtistId(); }
+
+    public void setArtistId(int artistId) { this.artistId = (long) artistId; }
 
     public List<Track> getTracks() {
         return Track.forAlbum(albumId);
@@ -123,7 +124,8 @@ public class Album extends Model {
             try (Connection conn = DB.connect();
                  PreparedStatement stmt = conn.prepareStatement(
                          "INSERT INTO albums (Title, ArtistId) VALUES (?, ?)")) {
-                stmt.setString(1, this.getTitle());
+                System.out.println(this.getArtistId());
+                stmt.setString(1, "\"" + this.getTitle() + "\"");
                 stmt.setLong(2, this.getArtistId());
                 stmt.executeUpdate();
                 albumId = DB.getLastID(conn);
@@ -133,6 +135,18 @@ public class Album extends Model {
             }
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public void delete() {
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "DELETE FROM albums WHERE AlbumId=?")) {
+            stmt.setLong(1, this.getAlbumId());
+            stmt.executeUpdate();
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
         }
     }
 

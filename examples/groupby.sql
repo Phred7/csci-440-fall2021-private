@@ -183,3 +183,17 @@ FROM playlists
     JOIN playlist_track pt on playlists.PlaylistId = pt.PlaylistId
     JOIN tracks t on t.TrackId = pt.TrackId
 WHERE t.TrackId = ?;
+
+-- Which of the following will return all Tracks having a runtime of more than 1000 milliseconds
+SELECT *
+FROM tracks
+WHERE Milliseconds > 1000
+ORDER BY Milliseconds;
+
+INSERT INTO albums (Title, ArtistId) VALUES (?, ?);
+
+SELECT SUM(invoices.Total) as SalesTotal, COUNT(InvoiceId) as SalesCount, e.FirstName, e.LastName ,e.Email
+FROM invoices
+       JOIN customers c on invoices.CustomerId = c.CustomerId
+       JOIN employees e on c.SupportRepId = e.EmployeeId
+GROUP BY EmployeeId;

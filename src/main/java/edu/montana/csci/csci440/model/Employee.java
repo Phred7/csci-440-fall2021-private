@@ -42,9 +42,9 @@ public class Employee extends Model {
                              "GROUP BY EmployeeId;")) {
             ResultSet results = stmt.executeQuery();
             List<Employee.SalesSummary> salesSummaryList = new ArrayList<>();
-            do {
+            while (results.next()) {
                 salesSummaryList.add(new SalesSummary(results));
-            } while (results.next());
+            }
             return salesSummaryList;
         } catch (SQLException sqlException) {
             throw new RuntimeException(sqlException);
