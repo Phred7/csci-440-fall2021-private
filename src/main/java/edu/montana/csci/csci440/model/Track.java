@@ -43,17 +43,10 @@ public class Track extends Model {
         albumId = results.getLong("AlbumId");
         mediaTypeId = results.getLong("MediaTypeId");
         genreId = results.getLong("GenreId");
-        albumName = getAlbumTitle();
-        artistName = getArtistName();
     }
 
     public static Track find(long i) {
         try (Connection conn = DB.connect();
-//             PreparedStatement stmt = conn.prepareStatement("SELECT tracks.*, a.Title as album, a2.Name as artist\n" +
-//                     "FROM tracks\n" +
-//                     "    JOIN albums a on tracks.AlbumId = a.AlbumId\n" +
-//                     "    JOIN artists a2 on a.ArtistId = a2.ArtistId\n" +
-//                     "WHERE tracks.TrackId == ?;")) {
              PreparedStatement stmt = conn.prepareStatement("SELECT *\n" +
                      "FROM tracks\n" +
                      "WHERE TrackId = ?;")) {
@@ -101,7 +94,24 @@ public class Track extends Model {
         return null;
     }
     public List<Playlist> getPlaylists(){
-        return Collections.emptyList();
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT *\n" +
+                             "FROM playlists\n" +
+                             "    JOIN playlist_track pt on playlists.PlaylistId = pt.PlaylistId\n" +
+                             "    JOIN tracks t on t.TrackId = pt.TrackId\n" +
+                             "WHERE t.TrackId = ?;"
+             )) {
+            stmt.setLong(1, trackId);
+            ResultSet results = stmt.executeQuery();
+            List<Playlist> resultList = new LinkedList<>();
+            while (results.next()) {
+                resultList.add(new Playlist(results));
+            }
+            return resultList;
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
     }
 
     public Long getTrackId() {
@@ -280,8 +290,9 @@ public class Track extends Model {
     public static List<Track> all(int page, int count, String orderBy) {
         try (Connection conn = DB.connect();
              PreparedStatement stmt = conn.prepareStatement(
-                     "SELECT * FROM tracks LIMIT ? OFFSET ?"
+                     "SELECT * FROM tracks ORDER BY " + orderBy + " LIMIT ? OFFSET ?"
              )) {
+            //stmt.setString(1, orderBy);
             stmt.setInt(1, count);
             stmt.setInt(2, (page - 1) * count);
             ResultSet results = stmt.executeQuery();

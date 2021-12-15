@@ -175,3 +175,11 @@ WHERE tracks.TrackId == 100;
 SELECT *
 FROM tracks
 WHERE TrackId = ?;
+
+SELECT * FROM tracks ORDER BY Milliseconds ASC LIMIT 10 OFFSET 0;
+
+SELECT *
+FROM playlists
+    JOIN playlist_track pt on playlists.PlaylistId = pt.PlaylistId
+    JOIN tracks t on t.TrackId = pt.TrackId
+WHERE t.TrackId = ?;
